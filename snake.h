@@ -2,6 +2,7 @@
 #define SNAKE_INCLUDED
 
 #include <deque>
+#include "table.h"
 #include "util.h"
 
 const int SNAKE_UP = 0;
@@ -19,6 +20,9 @@ public:
     snake(int x, int y, int len, int dir);
     void Forward(bool grow);
     void ChangeDirection(int dir);
+    bool isCrashTable(table t);
+    bool isCrashSnake(snake s);
+    bool isEatApple(table &t);
 };
 
 #endif

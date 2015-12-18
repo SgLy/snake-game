@@ -17,4 +17,9 @@ table::table (int w, int h){
         map[HashXY(w, 0, i)] = false;
         map[HashXY(w, h - 1, i)] = false;
     }
+    GenerateApple();
+}
+
+void table::GenerateApple() {
+    apple = point(random(20) + 1, random(20) + 1);
 }

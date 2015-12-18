@@ -4,6 +4,10 @@
 #include <map>
 
 void milliSleep(int ms);
+int random(int range);
+int min(int a, int b);
+int max(int a, int b);
+int CalcTime(int max_time, int min_time, int interval, int len);
 
 struct point {
     int x, y;

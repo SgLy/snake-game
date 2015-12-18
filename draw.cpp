@@ -1,10 +1,13 @@
 #include <curses.h>
+#include <time.h>
+#include <stdlib.h>
 
 #include "draw.h"
 #include "util.h"
 
 void DrawInitialization() {
     initscr();
+    noecho();
     start_color();
     init_pair(1, COLOR_WHITE, COLOR_BLACK);
     refresh();
@@ -19,11 +22,15 @@ void DrawFinalization() {
 }
 
 void DrawTable(table t) {
+    clear();
     for (int i = 0; i < t.height; ++i) {
         move(i, 0);
         for (int j = 0; j < t.width; ++j) {
-            if (!t.map[HashXY(t.width, i, j)])
+            if (!t.map[HashXY(t.width, i, j)]) {
                 addch(' ' | A_REVERSE);
+            } else 
+            if (i == t.apple.x && j == t.apple.y)
+                addch('*' | A_BOLD);
             else
                 addch(' ');
         }
@@ -60,7 +67,7 @@ void DrawSnake(snake s) {
     refresh();
 }
 
-void DrawMessage(table t, char * a) {
+void DrawMessage(table t, char a[]) {
     move(t.height, 2);
     printw(a);
     refresh();

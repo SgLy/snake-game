@@ -1,4 +1,5 @@
 #include "snake.h"
+#include <stdio.h>
 
 snake::snake (int x, int y, int len, int dir) {
     direction = dir;
@@ -19,4 +20,23 @@ void snake::Forward(bool grow) {
 void snake::ChangeDirection(int dir) {
     if (dir / 2 == direction / 2) return;
     direction = dir;
+}
+
+bool snake::isCrashTable(table t) {
+    return !t.map[HashXY(t.width, body[0].x, body[0].y)];
+}
+
+bool snake::isCrashSnake(snake s) {
+    int r = 0;
+    if (body[1] == s.body[1]) r = 1;
+    for (int i = r; i < s.body.size(); ++i)
+        if (body[0].x == s.body[i].x && body[0].y == s.body[i].y) return true;
+    return false;
+}
+
+bool snake::isEatApple(table &t) {
+    point a = body[0] + SNAKE_GO[direction];
+    bool res = (body[0] + SNAKE_GO[direction] == t.apple);
+    if (res) t.GenerateApple();
+    return res;
 }
