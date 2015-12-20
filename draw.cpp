@@ -67,8 +67,8 @@ void DrawSnake(snake s) {
     refresh();
 }
 
-void DrawMessage(table t, char a[]) {
-    move(t.height, 2);
+void DrawMessage(int line, const char a[]) {
+    move(line, 2);
     printw(a);
     refresh();
 }

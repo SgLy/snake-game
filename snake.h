@@ -23,6 +23,7 @@ public:
     bool isCrashTable(table t);
     bool isCrashSnake(snake s);
     bool isEatApple(table &t);
+    bool isCover(point p);
 };
 
 #endif

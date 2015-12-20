@@ -21,5 +21,5 @@ table::table (int w, int h){
 }
 
 void table::GenerateApple() {
-    apple = point(random(20) + 1, random(20) + 1);
+    apple = point(random(height - 2) + 1, random(width - 2) + 1);
 }

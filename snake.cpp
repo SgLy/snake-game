@@ -37,6 +37,14 @@ bool snake::isCrashSnake(snake s) {
 bool snake::isEatApple(table &t) {
     point a = body[0] + SNAKE_GO[direction];
     bool res = (body[0] + SNAKE_GO[direction] == t.apple);
-    if (res) t.GenerateApple();
+    if (res) do {
+        t.GenerateApple();
+    } while (isCover(t.apple));
     return res;
+}
+
+bool snake::isCover(point p) {
+    for (int i = 0; i < body.size(); ++i)
+        if (body[i] == p) return true;
+    return false;
 }
