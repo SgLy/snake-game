@@ -1,10 +1,28 @@
 #include "snake.h"
 #include <stdio.h>
 
+int findDirection(point p) {
+    for (int i = 0; i < 4; ++i)
+        if (p == SNAKE_GO[i]) return i;
+    return -1;
+}
+
+int InvertDirection(int dir) {
+    if (dir == SNAKE_UP) return SNAKE_DOWN;
+    if (dir == SNAKE_DOWN) return SNAKE_UP;
+    if (dir == SNAKE_LEFT) return SNAKE_RIGHT;
+    if (dir == SNAKE_RIGHT) return SNAKE_LEFT;
+}
+
+snake::snake () {
+    direction = SNAKE_RIGHT;
+    steps = 0;
+    body.push_back(point(0, 0));
+}
+
 snake::snake (int x, int y, int len, int dir) {
     direction = dir;
-    head.x = x;
-    head.y = y;
+    steps = 0;
     for (int i = 0; i < len; ++i) {
         x -= SNAKE_GO[dir].x;
         y -= SNAKE_GO[dir].y;
@@ -13,8 +31,16 @@ snake::snake (int x, int y, int len, int dir) {
 }
 
 void snake::Forward(bool grow) {
+    steps++;
     body.push_front(point(body[0].x + SNAKE_GO[direction].x, body[0].y + SNAKE_GO[direction].y));
     if (!grow) body.pop_back();
+}
+
+snake snake::operator = (snake a) {
+    snake c;
+    c.direction = a.direction;
+    c.body = a.body;
+    return c;
 }
 
 void snake::ChangeDirection(int dir) {
@@ -36,11 +62,7 @@ bool snake::isCrashSnake(snake s) {
 
 bool snake::isEatApple(table &t) {
     point a = body[0] + SNAKE_GO[direction];
-    bool res = (body[0] + SNAKE_GO[direction] == t.apple);
-    if (res) do {
-        t.GenerateApple();
-    } while (isCover(t.apple));
-    return res;
+    return (body[0] + SNAKE_GO[direction] == t.apple);
 }
 
 bool snake::isCover(point p) {

@@ -3,6 +3,7 @@
 #include <stdlib.h>
 
 #include "draw.h"
+#include "snake.h"
 #include "util.h"
 
 void DrawInitialization() {
@@ -46,24 +47,48 @@ void DrawSnake(snake s) {
     // Draw other body
     for (int i = 1; i < s.body.size() - 1; ++i) {
         move(s.body[i].x, s.body[i].y);
-        if (s.body[i + 1] - s.body[i] != s.body[i] - s.body[i - 1]) {
-            addch('+' | A_BOLD);
+        int a = findDirection(s.body[i] - s.body[i - 1]);
+        int b = findDirection(s.body[i + 1] - s.body[i]);
+        if (a != b) {
+            if (a == 0) {
+                if (b == 2)
+                    addch(ACS_URCORNER | A_BOLD);
+                if (b == 3)
+                    addch(ACS_ULCORNER | A_BOLD);
+            }
+            if (a == 1) {
+                if (b == 2)
+                    addch(ACS_LRCORNER | A_BOLD);
+                if (b == 3)
+                    addch(ACS_LLCORNER | A_BOLD);
+            }
+            if (a == 2) {
+                if (b == 0)
+                    addch(ACS_LLCORNER | A_BOLD);
+                if (b == 1)
+                    addch(ACS_ULCORNER | A_BOLD);
+            }
+            if (a == 3) {
+                if (b == 0)
+                    addch(ACS_LRCORNER | A_BOLD);
+                if (b == 1)
+                    addch(ACS_URCORNER | A_BOLD);
+            }
             continue;
         }
-        if (s.body[i] - s.body[i - 1] == SNAKE_GO[SNAKE_LEFT] || 
-            s.body[i] - s.body[i - 1] == SNAKE_GO[SNAKE_RIGHT])
-            addch('-' | A_BOLD);
-        else
-            addch('|' | A_BOLD);
+        if (a == SNAKE_LEFT || a == SNAKE_RIGHT)
+            addch(ACS_HLINE | A_BOLD);
+        if (a == SNAKE_UP || a == SNAKE_DOWN)
+            addch(ACS_VLINE | A_BOLD);
     }
 
     // Draw tail
     move(s.body[s.body.size() - 1].x, s.body[s.body.size() - 1].y);
     if (s.body[s.body.size() - 1] - s.body[s.body.size() - 2] == SNAKE_GO[SNAKE_LEFT] || 
         s.body[s.body.size() - 1] - s.body[s.body.size() - 2] == SNAKE_GO[SNAKE_RIGHT])
-        addch('-' | A_BOLD);
+        addch(ACS_HLINE | A_BOLD);
     else
-        addch('|' | A_BOLD);
+        addch(ACS_VLINE | A_BOLD);
     refresh();
 }
 

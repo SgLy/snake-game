@@ -6,7 +6,7 @@
 #include "draw.h"
 #include "table.h"
 #include "util.h"
-
+#include "ai.h"
 
 void EndGame() {
     clear();
@@ -16,18 +16,13 @@ void EndGame() {
     milliSleep(1500);
     exit(0);
 }
-
-bool play() {
-    int max_time = 1000;
-    int min_time = 50;
-    int interval = 50;
+ bool play() {
+    int speed = 50;
 
     table t(60, 20);
     snake s(5, 5, 4, SNAKE_RIGHT);
 
     while (true) {
-        int speed = CalcTime(max_time, min_time, interval, s.body.size());
-        timeout(speed);
         DrawTable(t);
 
         char message[100];
@@ -39,16 +34,38 @@ bool play() {
         DrawMessage(t.height + 3, message);
         sprintf(message, "Apple position: (%d, %d)", t.apple.x, t.apple.y);
         DrawMessage(t.height + 4, message);
-        DrawMessage(t.height + 6, "wasd to move, q to quit."); 
+        DrawMessage(t.height + 6, "Auto playing, ws to adjust snake speed, d for default speed 50ms. q to quit."); 
         DrawSnake(s);
+        timeout(speed);
         switch (getch()) {
-            case 'w': s.ChangeDirection(0); break;
-            case 's': s.ChangeDirection(1); break;
-            case 'a': s.ChangeDirection(2); break;
-            case 'd': s.ChangeDirection(3); break;
+            case 'w': {
+                speed += 5;
+                break;
+            }
+            case 's': {
+                if (speed > 5)
+                    speed -= 5;
+                break;
+            }
+            case 'd': {
+                speed = 50;
+                break;
+            }
             case 'q': EndGame();
         }
-        s.Forward(s.isEatApple(t));
+        timeout(1000);
+        int aud = AutoDecide(t, s);
+        if (aud == -1)
+            aud = s.direction;
+        s.ChangeDirection(aud);
+        if (s.isEatApple(t)) {
+            s.Forward(true);
+            do {
+                t.GenerateApple();
+            } while (s.isCover(t.apple));
+        } else {
+            s.Forward(false);
+        }
         if (s.isCrashTable(t)) {
             DrawMessage(t.height + 2, "You crash the board!                 ");
             milliSleep(2000);
@@ -70,7 +87,7 @@ int main() {
 
     clear();
     move(10, 20);
-    printw("Endless mode. p to play and q to quit.");
+    printw("AI mode. p to play and q to quit.");
     refresh();
     while (true) {
         char ch = getch();

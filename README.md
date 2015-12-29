@@ -1,30 +1,17 @@
 ## Snake Game
 
-2 game modes supported.
-Standard mode have 5 stage for you to conquer, which has different speed;
-Endless mode requires advanced skill to gain a higher score.
+3 game modes supported.
+__Standard mode__ (`standard_game`) have 5 stage for you to conquer, which has different speed;
+__Endless mode__ (`endless_game`) requires advanced skill to gain a higher score;
+__AI mode__ (`ai_game`) allows you to watch a snake eating apple automatically.
 
-git and GitHub new comer, sorry for all the inconvinience.
+AI can be tested by `test_ai`. After the test, information will be saved in `ai_status.txt`
 
-#### version 0.1.0
-###### 2015-12-20
+git and GitHub new comer, sorry for all the inconvenience.
 
-makefile done. Now you can use `make` to compile.
-`make standard_game` and `make endless_game` can compile the 2 mode respectively.
+_this project is one of the assignments in a programming courses_
 
-
-#### ~~version 0.0.1~~
-###### ~~2015-12-18~~
-~~`g++ *.cpp -o normal_game -l curses` to compile~~
-
-~~`./normal_game` to run~~
-
-~~Now it contains a normal mode. Use WASD to control the snake. More details please follow the instructions in the game.~~
-
-
-
-#### ~~version 0.0.0~~
-###### ~~2015-12-18~~
-~~`g++ *.cpp -o test -l curses` to compile~~
-
-~~`./test` to run~~
+_Sun Yat-Sen University_
+_School of Data and Computer Science_
+_Shucheng ZHENG_
+_zhengshch@mail2.sysu.edu.cn_

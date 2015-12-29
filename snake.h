@@ -12,18 +12,24 @@ const int SNAKE_RIGHT = 3;
 
 const point SNAKE_GO[4] = {point(-1, 0), point(1, 0), point(0, -1), point(0, 1)};
 
+int findDirection(point p);
+int InvertDirection(int dir);
+
 class snake {
 public:
-    int direction;
-    point head;
+    int direction, steps;
     std::deque<point> body;
+    snake();
     snake(int x, int y, int len, int dir);
+    snake operator = (snake a);
     void Forward(bool grow);
     void ChangeDirection(int dir);
     bool isCrashTable(table t);
     bool isCrashSnake(snake s);
     bool isEatApple(table &t);
+    bool isFakeEatApple(table &t);
     bool isCover(point p);
 };
+
 
 #endif
