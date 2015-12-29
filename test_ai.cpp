@@ -3,10 +3,10 @@
 #include <curses.h>
 #include <time.h>
 
-#include "draw.h"
-#include "table.h"
-#include "util.h"
-#include "ai.h"
+#include "lib//draw.h"
+#include "lib//table.h"
+#include "lib//util.h"
+#include "lib//ai.h"
 
 int play(int num) {
     table t(60, 20);

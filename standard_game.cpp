@@ -3,10 +3,9 @@
 #include <curses.h>
 #include <time.h>
 
-#include "draw.h"
-#include "table.h"
-#include "util.h"
-
+#include "lib//draw.h"
+#include "lib//table.h"
+#include "lib//util.h"
 
 void EndGame() {
     clear();

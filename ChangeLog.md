@@ -1,7 +1,13 @@
+#### version 0.2.1
+###### 2015-12-29
+
+put all libraries in /lib
+
+<br\>
 #### version 0.2.0
 ###### 2015-12-29
 
-add an simple AI.
+add an simple AI, which can eat 89 apples in a 60 * 20 map in average.
 `ai_game` to watch AI move, and `test_ai` to test the strength of the AI.
 `make ai_game` and `make test_ai` to compile them respectively
 

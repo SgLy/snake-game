@@ -16,5 +16,20 @@ test_ai: draw.o snake.o util.o table.o ai.o test_ai.cpp
 	g++ draw.o snake.o util.o table.o ai.o test_ai.cpp \
 	-o test_ai -l curses
 
+draw.o: lib//draw.cpp lib//draw.h
+	g++ -c lib//draw.cpp
+
+snake.o: lib//snake.cpp lib//snake.h
+	g++ -c lib//snake.cpp
+
+util.o: lib//util.cpp lib//util.h
+	g++ -c lib//util.cpp
+
+table.o: lib//table.cpp lib//table.h
+	g++ -c lib//table.cpp
+
+ai.o: lib//ai.cpp lib//ai.h
+	g++ -c lib//ai.cpp
+
 clean:
 	rm -f *.o *.gch standard_game endless_game ai_game test_ai
