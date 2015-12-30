@@ -1,3 +1,13 @@
+#### version 0.2.2
+###### 2015-12-30
+
+fixed a bug: when generating apple, apple will no longer appear under the snake.
+allow compiling under windows:
+1. get pdcurses;
+2. modify all `-l curses` in `makefile` to `-l pdcurses`
+3. `make` under cygwin.
+
+<br\>
 #### version 0.2.1
 ###### 2015-12-29
 
