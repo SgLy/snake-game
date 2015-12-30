@@ -47,7 +47,14 @@ bool play() {
             case 'd': s.ChangeDirection(3); break;
             case 'q': EndGame();
         }
-        s.Forward(s.isEatApple(t));
+        if (s.isEatApple(t)) {
+            s.Forward(true);
+            do {
+                t.GenerateApple();
+            } while (s.isCover(t.apple));
+        } else {
+            s.Forward(false);
+        }
         if (s.isCrashTable(t)) {
             DrawMessage(t.height + 2, "You crash the board!                 ");
             milliSleep(2000);
