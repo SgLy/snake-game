@@ -6,6 +6,24 @@
 #include "snake.h"
 #include "util.h"
 
+#if defined linux
+#define LLCORNER ACS_LLCORNER
+#define ULCORNER ACS_ULCORNER
+#define LRCORNER ACS_LRCORNER
+#define URCORNER ACS_URCORNER
+#define HLINE ACS_HLINE
+#define VLINE ACS_VLINE
+#endif
+
+#if defined WIN32
+#define LLCORNER '+'
+#define ULCORNER '+'
+#define LRCORNER '+'
+#define URCORNER '+'
+#define HLINE '-'
+#define VLINE '|'
+#endif
+
 void DrawInitialization() {
     initscr();
     noecho();
@@ -52,43 +70,43 @@ void DrawSnake(snake s) {
         if (a != b) {
             if (a == 0) {
                 if (b == 2)
-                    addch(ACS_URCORNER | A_BOLD);
+                    addch(URCORNER | A_BOLD);
                 if (b == 3)
-                    addch(ACS_ULCORNER | A_BOLD);
+                    addch(ULCORNER | A_BOLD);
             }
             if (a == 1) {
                 if (b == 2)
-                    addch(ACS_LRCORNER | A_BOLD);
+                    addch(LRCORNER | A_BOLD);
                 if (b == 3)
-                    addch(ACS_LLCORNER | A_BOLD);
+                    addch(LLCORNER | A_BOLD);
             }
             if (a == 2) {
                 if (b == 0)
-                    addch(ACS_LLCORNER | A_BOLD);
+                    addch(LLCORNER | A_BOLD);
                 if (b == 1)
-                    addch(ACS_ULCORNER | A_BOLD);
+                    addch(ULCORNER | A_BOLD);
             }
             if (a == 3) {
                 if (b == 0)
-                    addch(ACS_LRCORNER | A_BOLD);
+                    addch(LRCORNER | A_BOLD);
                 if (b == 1)
-                    addch(ACS_URCORNER | A_BOLD);
+                    addch(URCORNER | A_BOLD);
             }
             continue;
         }
         if (a == SNAKE_LEFT || a == SNAKE_RIGHT)
-            addch(ACS_HLINE | A_BOLD);
+            addch(HLINE | A_BOLD);
         if (a == SNAKE_UP || a == SNAKE_DOWN)
-            addch(ACS_VLINE | A_BOLD);
+            addch(VLINE | A_BOLD);
     }
 
     // Draw tail
     move(s.body[s.body.size() - 1].x, s.body[s.body.size() - 1].y);
     if (s.body[s.body.size() - 1] - s.body[s.body.size() - 2] == SNAKE_GO[SNAKE_LEFT] || 
         s.body[s.body.size() - 1] - s.body[s.body.size() - 2] == SNAKE_GO[SNAKE_RIGHT])
-        addch(ACS_HLINE | A_BOLD);
+        addch(HLINE | A_BOLD);
     else
-        addch(ACS_VLINE | A_BOLD);
+        addch(VLINE | A_BOLD);
     refresh();
 }
 
