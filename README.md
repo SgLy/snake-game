@@ -1,5 +1,8 @@
 # Snake Game
 
+win32 released exe download: [Link](http://sgly.cf/wp-content/uploads/2016/01/snake-game_release.rar)
+
+
 <br\>
 3 game modes supported.
 
