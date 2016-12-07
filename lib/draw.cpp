@@ -6,7 +6,14 @@
 #include "snake.h"
 #include "util.h"
 
-#if defined linux
+#if defined WIN32
+#define LLCORNER '+'
+#define ULCORNER '+'
+#define LRCORNER '+'
+#define URCORNER '+'
+#define HLINE '-'
+#define VLINE '|'
+#else
 #define LLCORNER ACS_LLCORNER
 #define ULCORNER ACS_ULCORNER
 #define LRCORNER ACS_LRCORNER
@@ -15,14 +22,6 @@
 #define VLINE ACS_VLINE
 #endif
 
-#if defined WIN32
-#define LLCORNER '+'
-#define ULCORNER '+'
-#define LRCORNER '+'
-#define URCORNER '+'
-#define HLINE '-'
-#define VLINE '|'
-#endif
 
 void DrawInitialization() {
     initscr();

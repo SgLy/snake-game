@@ -28,7 +28,6 @@ bool play_stage(int stage) {
             
     clear();
     move(10, 20);
-    char msg[100];
     printw("STAGE %d", stage);
     refresh();
     milliSleep(1000);
@@ -46,7 +45,6 @@ bool play_stage(int stage) {
         if (s.body.size() == 10 + 4) {
             clear();
             move(10, 20);
-            char msg[100];
             printw("You conquered stage %d!", stage);
             refresh();
             milliSleep(1000);
@@ -59,7 +57,7 @@ bool play_stage(int stage) {
         char message[100];
         sprintf(message, "STAGE %d", stage);
         DrawMessage(t.height + 1, message);
-        sprintf(message, "%d apples eaten, %d to eat.", s.body.size() - 4, 14 - s.body.size());
+        sprintf(message, "%lu apples eaten, %lu to eat.", s.body.size() - 4, 14 - s.body.size());
         DrawMessage(t.height + 2, message);
         sprintf(message, "Snake speed: %dms", speed);
         DrawMessage(t.height + 3, message);

@@ -30,7 +30,7 @@ bool play() {
         DrawTable(t);
 
         char message[100];
-        sprintf(message, "%d apples eaten.", s.body.size() - 4);
+        sprintf(message, "%lu apples eaten.", s.body.size() - 4);
         DrawMessage(t.height + 1, message);
         sprintf(message, "Steps taken: %d step%c", s.steps, (s.steps == 1) ? ' ' : 's');
         DrawMessage(t.height + 2, message);

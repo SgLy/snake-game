@@ -8,10 +8,17 @@ int findDirection(point p) {
 }
 
 int InvertDirection(int dir) {
-    if (dir == SNAKE_UP) return SNAKE_DOWN;
-    if (dir == SNAKE_DOWN) return SNAKE_UP;
-    if (dir == SNAKE_LEFT) return SNAKE_RIGHT;
-    if (dir == SNAKE_RIGHT) return SNAKE_LEFT;
+    switch (dir) {
+        case SNAKE_UP:
+            return SNAKE_DOWN;
+        case SNAKE_DOWN:
+            return SNAKE_UP;
+        case SNAKE_LEFT:
+            return SNAKE_RIGHT;
+        case SNAKE_RIGHT:
+        default:
+            return SNAKE_LEFT;
+    }
 }
 
 snake::snake () {
