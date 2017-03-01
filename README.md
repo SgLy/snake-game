@@ -1,6 +1,6 @@
 # Snake Game
 
-win32 released exe download: [Link](http://sgly.cf/wp-content/uploads/2016/01/snake-game_release.rar)
+win32 released exe download: [Link](http://sgly.cf/snake-game_release.rar)
 
 
 <br\>
